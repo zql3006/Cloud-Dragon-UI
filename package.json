@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/zql3006/Cloud-UI/issues"
   },
-  "homepage": "https://github.com/zql3006/Cloud-UI#readme"
+  "homepage": "https://github.com/zql3006/Cloud-UI#readme",
+  "dependencies": {
+    "vue": "^2.6.12"
+  }
 }
