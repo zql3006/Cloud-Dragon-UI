@@ -1,9 +1,25 @@
 <template>
-  <button class="c-button">按钮</button>
+  <button class="c-button" :class="{[`icon-${iconPosition}`]:true}">
+    <svg v-if="icon" class="icon">
+      <use :xlink:href="`#c-${icon}`" />
+    </svg>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </button>
 </template>
 <script>
 export default {
-  
+  props:{
+    icon:{},
+    iconPosition:{
+      type:String,
+      default:'left',
+      validator(value){
+        return value !== 'left' || value !== 'right'
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -14,6 +30,10 @@ export default {
     border:1px solid var(--border-color);
     background: var(--button-bg);
     padding: 0 1em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
     &:hover{
       border-color: var(--border-color-hover);
     }
@@ -22,6 +42,23 @@ export default {
     }
     &:focus{
       outline: none;
+    }
+    >.icon{
+      order:1;
+      margin-right: .1em;
+    }
+    >.content{
+      order:2;
+    }
+    &.icon-right{
+      >.icon{
+        order:2;
+        margin-right: 0;
+        margin-left: .1em;
+      }
+      >.content{
+        order:1;
+      }
     }
   }
 </style>
