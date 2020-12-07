@@ -1,8 +1,7 @@
 <template>
-  <button class="c-button" :class="{[`icon-${iconPosition}`]:true}">
-    <svg v-if="icon" class="icon">
-      <use :xlink:href="`#c-${icon}`" />
-    </svg>
+  <button class="c-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+    <c-icon class="icon" :name="icon" v-if="icon && !loading"></c-icon>
+    <c-icon class="loading icon" name="loading" v-if="loading"></c-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -12,6 +11,10 @@
 export default {
   props:{
     icon:{},
+    loading:{
+      type:Boolean,
+      default:false
+    },
     iconPosition:{
       type:String,
       default:'left',
@@ -23,6 +26,10 @@ export default {
 }
 </script>
 <style lang="scss">
+  @keyframes spin {
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+  }
   .c-button{
     font-size: var(--font-size);
     height: var(--button-height);
@@ -48,6 +55,7 @@ export default {
       margin-right: .1em;
     }
     >.content{
+      line-height: 1em;
       order:2;
     }
     &.icon-right{
@@ -59,6 +67,9 @@ export default {
       >.content{
         order:1;
       }
+    }
+    .loading{
+      animation: spin 1s linear infinite;
     }
   }
 </style>

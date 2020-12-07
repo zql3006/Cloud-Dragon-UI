@@ -1,8 +1,23 @@
 import Vue from 'vue'
 import Button from "./button";
+import Icon from "./icon";
+import ButtonGroup from "./button-group";
 
 Vue.component('c-button',Button)
+Vue.component('c-icon',Icon)
+Vue.component('c-button-group',ButtonGroup)
 
 new Vue({
-  el:'#app'
+  el:'#app',
+  data:{
+    loading1:false,
+    loading2:false,
+    loading3:true,
+    loading4:true,
+  },
+  methods:{
+    handleClick(loading){
+      this[`loading${loading}`] = !this[`loading${loading}`]
+    }
+  }
 })

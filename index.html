@@ -17,7 +17,7 @@
       --button-active-bg: #ccc;
       --border-radius: 4px;
       --border-color: #999;
-      --border-color-hover: #999;
+      --border-color-hover: red;
       --color: #333;
     }
     #app{
@@ -25,21 +25,20 @@
       font-size: var(--font-size);
     }
   </style>
-  <style>
-    .icon{
-      width: 1em;
-      height: 1em;
-    }
-  </style>
 </head>
 <body>
   <div id="app">
-    <c-button icon="setting" icon-position="left">按钮</c-button>
-    <c-button icon="setting" icon-position="up">按钮</c-button>
-    <c-button icon="setting" icon-position="right">按钮</c-button>
-    <c-button icon="setting">按钮</c-button>
+    <c-button icon="setting" :loading="loading1" icon-position="left" @click="handleClick(1)">按钮</c-button>
+    <c-button icon="setting" :loading="loading2" icon-position="up" @click="handleClick(2)">按钮</c-button>
+    <c-button icon="setting" :loading="loading3" icon-position="right" @click="handleClick(3)">按钮</c-button>
+    <c-button icon="setting" :loading="loading4" @click="handleClick(4)">按钮</c-button>
+    <c-button-group>
+      <c-button icon="left">上一页</c-button>
+      <c-button>更多</c-button>
+      <c-button icon="right" icon-position="right">下一页</c-button>
+    </c-button-group>
   </div>
 </body>
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_2246643_t3afc2a7ov.js"></script>
+<script src="//at.alicdn.com/t/font_2246643_g8x20kl04yt.js"></script>
 </html>
